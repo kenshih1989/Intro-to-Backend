@@ -1,10 +1,8 @@
 import dotenv from "dotenv";
-import connectDB from "./Backend/src/config/database.js";
-import app from "./Backend/src/app.js";
+import connectDB from "./config/database.js";
+import app from "./app.js";
 
-dotenv.config({
-  path: './.env'
-}); // Load environment variables from .env file
+dotenv.config({path:'./Backend/.env'}); // Load environment variables from .env file
 
 const startServer = async () => {
   try {
