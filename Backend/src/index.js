@@ -6,21 +6,23 @@ dotenv.config({path:'./Backend/.env'}); // Load environment variables from .env 
 
 const startServer = async () => {
   try {
-    await connectDB();
+           console.log("MONGODB_URI:", process.env.MONGODB_URI);
+           await connectDB();
 
-    app.on("error", (error) => {
-      console.log("ERROR", error);
-      throw error;
+        app.on("error", (error) => {    // to check if there are any errors 
+        console.log("ERROR", error);
+        throw error;
     });
 
-    app.listen(process.env.PORT || 8000, () => {
-      console.log(`Server is running on port: ${process.env.PORT || 8000}`);
-    });
 
-  } catch (error) {
-    console.error("Failed to start the server:", error);
-    process.exit(1);
-  }
-};
+    app.listen(process.env.PORT || 8000, () => {   // app will listen
+        console.log(` Server is running at port : ${process.env.PORT}`);                 
+
+    });
+} catch (err) {
+    console.log("MONGO db connection failed !!! ", err);
+    
+}
+}
 
 startServer();
